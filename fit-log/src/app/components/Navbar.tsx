@@ -40,9 +40,8 @@ const Navbar = () => {
   );
 
   return (
-    <nav className="bg-[#0b0c0e] text-white border-b border-zinc-800 px-3 sm:px-4 py-5 w-full overflow-hidden">
+    <nav className="bg-[#0b0c0e] text-white border-b border-zinc-800 px-3 sm:px-4 py-5 w-full ">
       <div className="max-w-7xl mx-auto flex items-center justify-between gap-1.5 sm:gap-4">
-        
         {/* Left Side: Hamburger (Mobile) + Desktop Logo */}
         <div className="flex items-center gap-2 shrink-0">
           {/* Mobile Hamburger Menu */}
@@ -80,7 +79,11 @@ const Navbar = () => {
             href="/"
             className="hidden md:flex items-center gap-2 text-xl font-black tracking-wider"
           >
-            <Image src={logoimage} alt="logo image" className="w-7 h-7 object-contain" />
+            <Image
+              src={logoimage}
+              alt="logo image"
+              className="w-7 h-7 object-contain"
+            />
             <span>FITLOG</span>
           </Link>
         </div>
@@ -91,7 +94,11 @@ const Navbar = () => {
             href="/"
             className="flex items-center gap-1 text-base font-black tracking-wider whitespace-nowrap"
           >
-            <Image src={logoimage} alt="logo image" className="w-5 h-5 object-contain" />
+            <Image
+              src={logoimage}
+              alt="logo image"
+              className="w-5 h-5 object-contain"
+            />
             <span>FITLOG</span>
           </Link>
         </div>
@@ -107,7 +114,10 @@ const Navbar = () => {
         <div className="flex items-center gap-2 sm:gap-6 ">
           {/* Plan Counter */}
           <div className="flex items-center gap-1 sm:gap-2  hover:opacity-80">
-            <Link href='/my-plan' className="text-[11px] sm:text-sm font-medium text-gray-300">
+            <Link
+              href="/my-plan"
+              className="text-[11px] sm:text-sm font-medium text-gray-300"
+            >
               Plan
             </Link>
             <span className="bg-[#98C304] text-black font-bold text-[10px] sm:text-xs w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center leading-none">
@@ -117,7 +127,10 @@ const Navbar = () => {
 
           {/* Saved Counter */}
           <div className="flex items-center gap-1 sm:gap-2  hover:opacity-80">
-            <Link href='/my-plan' className="text-[11px] sm:text-sm font-medium text-gray-300">
+            <Link
+              href="/my-plan"
+              className="text-[11px] sm:text-sm font-medium text-gray-300"
+            >
               Saved
             </Link>
             <span className="border border-zinc-700 text-gray-300 font-semibold text-[10px] sm:text-xs w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center leading-none">
@@ -125,7 +138,6 @@ const Navbar = () => {
             </span>
           </div>
         </div>
-
       </div>
     </nav>
   );
