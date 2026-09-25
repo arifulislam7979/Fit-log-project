@@ -11,7 +11,7 @@ const WorkoutDetailPage = async ({ params }: DetailPageProps) => {
   const { id } = await params;
   const res = await fetch(`https://api.abcz.workers.dev/api/fitlog/${id}`);
   const data: WorkoutDataType = await res.json();
-
+  console.log(data);
   return (
     <div className="min-h-screen bg-[#0b0c0e] text-white p-4 md:p-10 flex items-center justify-center font-sans">
       {/* Main Outer Container */}

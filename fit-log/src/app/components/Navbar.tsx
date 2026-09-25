@@ -4,12 +4,13 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import logoimage from "@/assets/logo.png";
 import Image from "next/image";
+import { useContext } from "react";
+import { workContext } from "../context/WorkoutDetaileProvider";
 
 const Navbar = () => {
+  const {addCount, saveCount} = useContext(workContext)
   const pathname = usePathname();
-
   const isActive = (path: string) => pathname === path;
-
   const navLinks = (
     <>
       <li>
@@ -121,7 +122,7 @@ const Navbar = () => {
               Plan
             </Link>
             <span className="bg-[#98C304] text-black font-bold text-[10px] sm:text-xs w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center leading-none">
-              0
+              {addCount}
             </span>
           </div>
 
@@ -134,7 +135,7 @@ const Navbar = () => {
               Saved
             </Link>
             <span className="border border-zinc-700 text-gray-300 font-semibold text-[10px] sm:text-xs w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center leading-none">
-              0
+              {saveCount}
             </span>
           </div>
         </div>

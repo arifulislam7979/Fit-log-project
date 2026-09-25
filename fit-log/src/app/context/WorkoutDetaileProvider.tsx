@@ -13,20 +13,27 @@ interface WorkoutContext {
     setAddPlan: Dispatch<SetStateAction<WorkoutDataType[]>>
     saveFor: WorkoutDataType[]
     setSaveFor: Dispatch<SetStateAction<WorkoutDataType[]>>
-    count: number
-    setCount: Dispatch<SetStateAction<number>>
+    addCount: number
+    setAddCount: Dispatch<SetStateAction<number>>
+    saveCount: number
+    setSaveCount: Dispatch<SetStateAction<number>>
+    
 }
 export const workContext = createContext<WorkoutContext>({
     addPlan: [],
     setAddPlan:() => {},
     saveFor: [],
     setSaveFor: () => {},
-    count: 0,
-    setCount: () => {}
+    addCount: 0,
+    setAddCount: () => {},
+    saveCount: 0,
+    setSaveCount: () => {}
+    
 })
 
 const WorkoutDetaileProvider = ({children}:WorkourChildren) => {
-    const [count, setCount] = useState<number>(0)
+    const [addCount, setAddCount] = useState<number>(0)
+    const [saveCount, setSaveCount] = useState<number>(0)
     const [addPlan, setAddPlan] = useState<WorkoutDataType[]>([])
     const [saveFor, setSaveFor] = useState<WorkoutDataType[]>([])
     const shearedData = {
@@ -34,8 +41,11 @@ const WorkoutDetaileProvider = ({children}:WorkourChildren) => {
         setAddPlan,
         saveFor,
         setSaveFor,
-        count,
-        setCount
+        addCount,
+        setAddCount,
+        saveCount,
+        setSaveCount,
+        
     }
     return (
         <workContext.Provider value={shearedData}>
