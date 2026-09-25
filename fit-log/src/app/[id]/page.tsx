@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { WorkoutDataType } from "../types/fitDataType";
-import { FaCalendarPlus, FaRegBookmark } from "react-icons/fa";
+import AddWorkButton from "../components/AddWorkButton";
+import SaveForButton from "../components/SaveForButton";
 
 interface DetailPageProps {
   params: Promise<{ id: string }>;
@@ -138,15 +139,9 @@ const WorkoutDetailPage = async ({ params }: DetailPageProps) => {
 
             {/* Bottom Buttons */}
             <div className="flex flex-wrap sm:flex-nowrap gap-3 pt-4">
-              <button className="bg-[#a3e635] hover:bg-[#86efac] text-black font-bold py-3 px-5 rounded-lg text-xs tracking-wide uppercase transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer active:scale-95">
-                <FaCalendarPlus className="w-4 h-4 stroke-[3]" />
-                <span>Add to today&apos;s plan</span>
-              </button>
+              <AddWorkButton data={data}></AddWorkButton>
 
-              <button className="border border-zinc-800 hover:border-zinc-600 bg-zinc-900/50 hover:bg-zinc-900 text-zinc-300 font-semibold py-3 px-5 rounded-lg text-xs tracking-wide uppercase transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer active:scale-95">
-                <FaRegBookmark className="w-4 h-4 text-zinc-400" />
-                <span>Save for later</span>
-              </button>
+              <SaveForButton data={data}></SaveForButton>
             </div>
 
           </div>
