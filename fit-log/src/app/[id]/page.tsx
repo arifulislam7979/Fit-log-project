@@ -2,6 +2,7 @@ import Image from "next/image";
 import { WorkoutDataType } from "../types/fitDataType";
 import AddWorkButton from "../components/AddWorkButton";
 import SaveForButton from "../components/SaveForButton";
+import { notFound } from "next/navigation";
 
 interface DetailPageProps {
   params: Promise<{ id: string }>;
@@ -10,17 +11,21 @@ interface DetailPageProps {
 const WorkoutDetailPage = async ({ params }: DetailPageProps) => {
   const { id } = await params;
   const res = await fetch(`https://api.abcz.workers.dev/api/fitlog/${id}`);
+  if(!res.ok){
+    notFound();
+  }
   const data: WorkoutDataType = await res.json();
-  console.log(data);
+  
   return (
     <div className="min-h-screen bg-[#0b0c0e] text-white p-4 md:p-10 flex items-center justify-center font-sans">
       {/* Main Outer Container */}
       <div className="w-full max-w-6xl bg-[#12141a] border border-zinc-800/80 rounded-3xl p-6 md:p-8 shadow-2xl">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start min-w-0">
           
-          {/* Left Side: Exercise Image */}
-          <div className="relative w-full h-[380px] sm:h-[480px] lg:h-[540px] rounded-2xl overflow-hidden bg-zinc-900">
+          <div className="relative w-full min-w-0 h-[380px] sm:h-[480px] lg:h-[540px] rounded-2xl overflow-hidden bg-zinc-900">
+
             <Image
+
               src={data.image}
               alt={data.name}
               fill
@@ -31,9 +36,9 @@ const WorkoutDetailPage = async ({ params }: DetailPageProps) => {
           </div>
 
           {/* Right Side: Details Content */}
-          <div className="flex flex-col justify-between h-full space-y-6">
+          <div className="flex flex-col justify-between min-w-0 h-full space-y-6">
             <div>
-              {/* Title & Description */}
+              
               <h1 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-white mb-2">
                 {data.name}
               </h1>
@@ -41,7 +46,7 @@ const WorkoutDetailPage = async ({ params }: DetailPageProps) => {
                 {data.description}
               </p>
 
-              {/* Muscle Groups */}
+              
               <div className="flex flex-wrap gap-2 mb-6">
                 {data.muscleGroups?.map((group) => (
                   <span
@@ -143,7 +148,6 @@ const WorkoutDetailPage = async ({ params }: DetailPageProps) => {
 
               <SaveForButton data={data}></SaveForButton>
             </div>
-
           </div>
         </div>
       </div>

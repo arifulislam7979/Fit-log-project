@@ -26,7 +26,7 @@ const WorkoutData = ({ workout }: WorkoutProps) => {
         {/* Card Content Body */}
         <div className="p-5 flex flex-col justify-between flex-1">
           <div>
-            {/* Muscle Group Badges */}
+            
             <div className="flex flex-wrap items-center gap-2 mb-3">
               {workout.muscleGroups.map((muscle) => (
                 <span
@@ -38,26 +38,25 @@ const WorkoutData = ({ workout }: WorkoutProps) => {
               ))}
             </div>
 
-            {/* Title */}
+            
             <h3 className="text-white text-lg font-black uppercase tracking-wide mb-1 leading-snug">
               {workout.name}
             </h3>
 
-            {/* Subtitle / Equipment */}
+            
             <p className="text-zinc-500 text-xs font-medium mb-6">
               {workout.equipment}
             </p>
           </div>
 
-          {/* Bottom Meta Stats (Duration, Calories, Rating) */}
+          
           <div className="flex items-center gap-4 text-zinc-400 text-xs pt-2 border-t border-zinc-800/50">
-            {/* Duration */}
+            
             <div className="flex items-center gap-1.5">
               <MdAccessTime />
               <span>{workout.duration} min</span>
             </div>
 
-            {/* Calories */}
             <div className="flex items-center gap-1.5">
               <FaFireFlameCurved />
               <span>{workout.caloriesBurned} kcal</span>

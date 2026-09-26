@@ -5,7 +5,7 @@ import { FaFireFlameCurved } from "react-icons/fa6";
 import { MdOutlineAccessTime } from "react-icons/md";
 import { RxCross1 } from "react-icons/rx";
 import { WorkoutDataType } from "../types/fitDataType";
-import { toast } from "react-toastify";
+
 
 interface TabDataProps {
     planSortedData: WorkoutDataType[]
@@ -13,12 +13,12 @@ interface TabDataProps {
     saveSordedData: WorkoutDataType[]
     handleRemove: (id: number) => void
     handleRemoveSaved: (id: number) => void
+    handleMarkAs: (id: number) => void
+    
 }
 
-const TabData = ({planSortedData, activeTab,saveSordedData,handleRemove,handleRemoveSaved}:TabDataProps) => {
-    const handleMarkAs = () => {
-        toast.success('Mark as Done')
-    }
+const TabData = ({planSortedData, activeTab,saveSordedData,handleRemove,handleRemoveSaved,handleMarkAs}:TabDataProps) => {
+    
   return (
     <div>
       {activeTab === "tab1" ? (
@@ -65,7 +65,7 @@ const TabData = ({planSortedData, activeTab,saveSordedData,handleRemove,handleRe
                     />
                   </div>
 
-                  {/* Text Details */}
+                  
                   <div className="space-y-1">
                     <h2 className="font-black text-white text-base sm:text-lg tracking-wider uppercase">
                       {plan.name}
@@ -75,7 +75,7 @@ const TabData = ({planSortedData, activeTab,saveSordedData,handleRemove,handleRe
                       {plan.equipment}
                     </p>
 
-                    {/* Stats */}
+                    
                     <div className="flex items-center gap-3 text-xs text-zinc-300 pt-1 font-medium">
                       <span className="flex items-center gap-1.5">
                         <MdOutlineAccessTime className="w-3.5 h-3.5 text-[#a3e635] fill-[#98C304]" />
@@ -104,8 +104,8 @@ const TabData = ({planSortedData, activeTab,saveSordedData,handleRemove,handleRe
                     View Details
                   </Link>
 
-                  <button onClick={handleMarkAs} className="bg-[#98C304] hover:bg-[#86efac] text-black font-bold text-xs px-4 py-2.5 rounded-full flex items-center justify-center gap-1.5 transition-all duration-200 cursor-pointer active:scale-95 shadow-md shadow-[#a3e635]/10 whitespace-nowrap">
-                    <FaCheck className="w-4 h-4 stroke-[3]" />
+                  <button onClick={()=>handleMarkAs(plan.id)} className="bg-[#98C304] hover:bg-[#86efac] text-black font-bold text-xs px-4 py-2.5 rounded-full flex items-center justify-center gap-1.5 transition-all duration-200 cursor-pointer active:scale-95 shadow-md shadow-[#a3e635]/10 whitespace-nowrap">
+                    <FaCheck className="w-4 h-4" />
                     <span>Mark as Done</span>
                   </button>
 
@@ -151,8 +151,8 @@ const TabData = ({planSortedData, activeTab,saveSordedData,handleRemove,handleRe
             >
               {/* Left Portion */}
               <div className="flex items-center gap-4 w-full sm:w-auto">
-                {/* Image */}
-                <div className="relative w-28 h-20 sm:w-32 sm:h-20 rounded-xl overflow-hidden bg-zinc-900 flex-shrink-0 border border-zinc-800/50">
+               
+                <div className="relative w-28 h-20 sm:w-32 sm:h-20 rounded-xl overflow-hidden bg-zinc-900 border border-zinc-800/50">
                   <Image
                     src={save.image}
                     alt={save.name}
@@ -172,7 +172,7 @@ const TabData = ({planSortedData, activeTab,saveSordedData,handleRemove,handleRe
                     {save.equipment}
                   </p>
 
-                  {/* Stats */}
+                  
                   <div className="flex items-center gap-3 text-xs text-zinc-300 pt-1 font-medium">
                     <span className="flex items-center gap-1.5">
                       <MdOutlineAccessTime className="w-3.5 h-3.5 text-[#a3e635] fill-[#98C304]" />

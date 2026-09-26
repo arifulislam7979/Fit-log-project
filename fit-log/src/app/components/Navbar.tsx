@@ -4,13 +4,22 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import logoimage from "@/assets/logo.png";
 import Image from "next/image";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { workContext } from "../context/WorkoutDetaileProvider";
 
 const Navbar = () => {
-  const {addCount, saveCount} = useContext(workContext)
+  const { addCount, saveCount } = useContext(workContext);
   const pathname = usePathname();
+  const [mounted, setMounted] = useState(false);
   const isActive = (path: string) => pathname === path;
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setMounted(true);
+    }, 0);
+    return () => clearTimeout(timer);
+  }, []);
+  
   const navLinks = (
     <>
       <li>
@@ -43,7 +52,7 @@ const Navbar = () => {
   return (
     <nav className="bg-[#0b0c0e] text-white border-b border-zinc-800 px-3 sm:px-4 py-5 w-full ">
       <div className="max-w-7xl mx-auto flex items-center justify-between gap-1.5 sm:gap-4">
-        {/* Left Side: Hamburger (Mobile) + Desktop Logo */}
+        
         <div className="flex items-center gap-2 shrink-0">
           {/* Mobile Hamburger Menu */}
           <div className="dropdown md:hidden">
@@ -111,7 +120,7 @@ const Navbar = () => {
           </ul>
         </div>
 
-        {/* Right Side: Resized Plan & Saved Counters */}
+       
         <div className="flex items-center gap-2 sm:gap-6 ">
           {/* Plan Counter */}
           <div className="flex items-center gap-1 sm:gap-2  hover:opacity-80">
@@ -121,8 +130,8 @@ const Navbar = () => {
             >
               Plan
             </Link>
-            <span className="bg-[#98C304] text-black font-bold text-[10px] sm:text-xs w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center leading-none">
-              {addCount}
+            <span className="bg-[#ccff00] text-black font-bold text-[10px] sm:text-xs w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center leading-none">
+              {mounted ? addCount: 0}
             </span>
           </div>
 
@@ -135,7 +144,7 @@ const Navbar = () => {
               Saved
             </Link>
             <span className="border border-zinc-700 text-gray-300 font-semibold text-[10px] sm:text-xs w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center leading-none">
-              {saveCount}
+              {mounted ? saveCount : 0}
             </span>
           </div>
         </div>

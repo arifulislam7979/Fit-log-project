@@ -1,4 +1,4 @@
-import Link from "next/link";
+
 import { WorkoutDataType } from "../types/fitDataType";
 import WorkoutData from "./WorkoutData";
 
@@ -14,7 +14,6 @@ const getFitData = async () => {
 };
 const Library = async () => {
   const workoutData = await getFitData();
-  console.log(workoutData);
   return (
     <section
       id="library"
