@@ -6,6 +6,7 @@ import {
   SetStateAction,
   useState,
   createContext,
+  useEffect,
 } from "react";
 import { WorkoutDataType } from "../types/fitDataType";
 
@@ -42,6 +43,36 @@ export const workContext = createContext<WorkoutContext>({
 const WorkoutDetaileProvider = ({ children }: WorkourChildren) => {
   const [addPlan, setAddPlan] = useState<WorkoutDataType[]>([]);
   const [saveFor, setSaveFor] = useState<WorkoutDataType[]>([]);
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => {
+    if (isMounted) {
+      localStorage.setItem("addPlan", JSON.stringify(addPlan));
+    }
+  }, [addPlan, isMounted]);
+
+  useEffect(() => {
+    if (isMounted) {
+      localStorage.setItem("saveFor", JSON.stringify(saveFor));
+    }
+  }, [saveFor, isMounted]);
+  
+  useEffect(() => {
+    const localAddPlan = localStorage.getItem('addPlan')
+    const localSaveFor = localStorage.getItem('saveFor')
+    
+    setTimeout(()=> {
+      if(localAddPlan) {
+        setAddPlan(JSON.parse(localAddPlan))
+      }
+      if(localSaveFor){
+        setSaveFor(JSON.parse(localSaveFor))
+      }
+      setIsMounted(true)
+    },0)
+  }, []);
+
+  
+
   const addCount = addPlan.length;
   const saveCount = saveFor.length;
 

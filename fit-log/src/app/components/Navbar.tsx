@@ -50,7 +50,7 @@ const Navbar = () => {
   );
 
   return (
-    <nav className="bg-[#0b0c0e] text-white border-b border-zinc-800 px-3 sm:px-4 py-5 w-full ">
+    <nav className="sticky top-0 z-50 bg-[#0b0c0e] text-white border-b border-zinc-800 px-3 sm:px-4 py-5 w-full ">
       <div className="max-w-7xl mx-auto flex items-center justify-between gap-1.5 sm:gap-4">
         
         <div className="flex items-center gap-2 shrink-0">
