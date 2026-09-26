@@ -14,9 +14,11 @@ interface WorkoutContext {
     saveFor: WorkoutDataType[]
     setSaveFor: Dispatch<SetStateAction<WorkoutDataType[]>>
     addCount: number
-    setAddCount: Dispatch<SetStateAction<number>>
     saveCount: number
-    setSaveCount: Dispatch<SetStateAction<number>>
+    addTotalMinutes: number
+    addTotalCalories: number
+    saveTotalMinutes: number
+    SaveTotalCalories: number
     
 }
 export const workContext = createContext<WorkoutContext>({
@@ -25,27 +27,35 @@ export const workContext = createContext<WorkoutContext>({
     saveFor: [],
     setSaveFor: () => {},
     addCount: 0,
-    setAddCount: () => {},
     saveCount: 0,
-    setSaveCount: () => {}
-    
+    addTotalMinutes: 0,
+    addTotalCalories: 0,
+    saveTotalMinutes: 0,
+    SaveTotalCalories: 0
+
 })
 
 const WorkoutDetaileProvider = ({children}:WorkourChildren) => {
-    const [addCount, setAddCount] = useState<number>(0)
-    const [saveCount, setSaveCount] = useState<number>(0)
     const [addPlan, setAddPlan] = useState<WorkoutDataType[]>([])
     const [saveFor, setSaveFor] = useState<WorkoutDataType[]>([])
+    const addCount = addPlan.length;
+    const saveCount = saveFor.length;
+    const addTotalMinutes = addPlan.reduce((total, workout) => total + workout.duration,0)
+    const addTotalCalories = addPlan.reduce((total, workout) => total + workout.caloriesBurned,0)
+    const saveTotalMinutes = saveFor.reduce((total, workout) => total + workout.duration,0)
+    const SaveTotalCalories = saveFor.reduce((total, workout) => total + workout.caloriesBurned,0)
+    
     const shearedData = {
         addPlan,
         setAddPlan,
         saveFor,
         setSaveFor,
         addCount,
-        setAddCount,
         saveCount,
-        setSaveCount,
-        
+        addTotalMinutes,
+        addTotalCalories,
+        saveTotalMinutes,
+        SaveTotalCalories
     }
     return (
         <workContext.Provider value={shearedData}>

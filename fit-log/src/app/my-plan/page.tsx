@@ -6,7 +6,7 @@ import { WorkoutDataType } from "../types/fitDataType";
 import { toast } from "react-toastify";
 
 export default function MyPlanPage() {
-  const {addCount, saveCount} = useContext(workContext)
+  const {addCount, saveCount , addTotalMinutes, addTotalCalories, saveTotalMinutes, SaveTotalCalories} = useContext(workContext)
   const [activeTab, setActiveTab] = useState<string>("tab1");
   const [sorting, setSorting] = useState<"rating" | "duration" | "calories">(
     "duration",
@@ -71,7 +71,7 @@ export default function MyPlanPage() {
             <span className="text-zinc-400 text-xs font-semibold">Minutes</span>
 
             <div className="text-3xl sm:text-4xl font-black text-white mt-1">
-              0
+              {activeTab === 'tab1' ? addTotalMinutes : saveTotalMinutes}
             </div>
           </div>
 
@@ -82,7 +82,7 @@ export default function MyPlanPage() {
             </span>
 
             <div className="text-3xl sm:text-4xl font-black text-white mt-1">
-              0
+              {activeTab === 'tab1' ? addTotalCalories : SaveTotalCalories}
             </div>
           </div>
         </div>

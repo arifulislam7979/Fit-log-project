@@ -9,14 +9,13 @@ interface SaveButtonProps {
 }
 
 const SaveForButton = ({data}:SaveButtonProps) => {
-    const {saveFor, setSaveFor ,saveCount, setSaveCount} = useContext(workContext)
+    const {saveFor, setSaveFor} = useContext(workContext)
     const handleSaveButton = (id:number) =>{
         if(saveFor.some(save => save.id === id)) {
             toast.error('Already plan saved')
             return
         }
         setSaveFor([...saveFor, data])
-        setSaveCount(saveCount + 1)
         toast.success("Save For Plan")
     }
     return (

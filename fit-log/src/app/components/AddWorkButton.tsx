@@ -10,16 +10,15 @@ interface AddButtonProps {
 }
 
 const AddWorkButton = ({data}: AddButtonProps) => {
-    const {addPlan, setAddPlan,addCount, setAddCount} = useContext(workContext)
+    const {addPlan, setAddPlan,} = useContext(workContext)
     const handleWorkButton = (id:number) => {
         if(addPlan.some(plan => plan.id === id)){
           toast.error('Already in your plan');
           return
         }
         setAddPlan([...addPlan,data])
-        
         toast.success("Added to today's plan")
-        setAddCount(addCount + 1)
+        
     }
   return (
     <div>
