@@ -13,7 +13,7 @@ const AddWorkButton = ({data}: AddButtonProps) => {
     const {addPlan, setAddPlan,addCount, setAddCount} = useContext(workContext)
     const handleWorkButton = (id:number) => {
         if(addPlan.some(plan => plan.id === id)){
-          toast.error('Already in your plan')
+          toast.error('Already in your plan');
           return
         }
         setAddPlan([...addPlan,data])

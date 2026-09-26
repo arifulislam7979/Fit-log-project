@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import { workContext } from "../context/WorkoutDetaileProvider";
 import TabData from "../components/TabData";
 import { WorkoutDataType } from "../types/fitDataType";
+import { toast } from "react-toastify";
 
 export default function MyPlanPage() {
   const {addCount, saveCount} = useContext(workContext)
@@ -15,11 +16,13 @@ export default function MyPlanPage() {
   const handleRemove = (id: number) => {
     const workRemove = addPlan.filter((plan) => plan.id !== id);
     setAddPlan(workRemove);
+    toast.info('Plan remove successfull')
   };
 
   const handleRemoveSaved = (id: number) => {
     const workRemove = saveFor.filter((save) => save.id !== id);
     setSaveFor(workRemove);
+    toast.info('Saved remove successfull')
   };
   const sortedData = (data: WorkoutDataType[]) => {
     const sortData = [...data];
