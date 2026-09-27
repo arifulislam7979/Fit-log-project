@@ -16,15 +16,20 @@ const AddWorkButton = ({data}: AddButtonProps) => {
           toast.error('Already in your plan');
           return
         }
+        if(addPlan.length >= 5){
+          toast.error("Today's plan can contain only 5 lifts")
+          return
+        }
+
         setAddPlan([...addPlan,data])
         toast.success("Added to today's plan")
         
     }
   return (
     <div>
-      <button onClick={()=> handleWorkButton(data.id)} className="bg-[#a3e635] hover:bg-[#86efac] text-black font-bold py-3 px-5 rounded-lg text-xs tracking-wide transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer active:scale-95">
+      <button disabled={addPlan.length >= 5} onClick={()=> handleWorkButton(data.id)} className="bg-[#a3e635] hover:bg-[#86efac] text-black font-bold py-3 px-5 rounded-lg text-xs tracking-wide transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer active:scale-95">
         <FaCalendarPlus className="w-4 h-4" />
-        <span>Add to today&apos;s plan</span>
+        <span>{addPlan.length >= 5 ? "Plan Full Today" : "Add to today's plan"}</span>
       </button>
     </div>
   );

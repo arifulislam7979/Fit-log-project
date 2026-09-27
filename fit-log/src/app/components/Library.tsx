@@ -1,6 +1,4 @@
-
-import { WorkoutDataType } from "../types/fitDataType";
-import WorkoutData from "./WorkoutData";
+import LibrarySearch from "./LibrarySearch";
 
 const getFitData = async () => {
   try {
@@ -26,14 +24,13 @@ const Library = async () => {
         <p className="text-gray-400  ">
           Twelve lifts covering every major muscle group.
         </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 my-8 cursor-pointer">
-            {workoutData.map((workout: WorkoutDataType) => (
-              <WorkoutData key={workout.id} workout={workout}></WorkoutData>
-            ))}
-          </div>
+        <LibrarySearch workoutData={workoutData}></LibrarySearch>
+          
       </div>
     </section>
   );
 };
 
 export default Library;
+
+

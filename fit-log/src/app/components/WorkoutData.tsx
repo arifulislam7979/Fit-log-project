@@ -56,7 +56,6 @@ const WorkoutData = ({ workout }: WorkoutProps) => {
               <MdAccessTime />
               <span>{workout.duration} min</span>
             </div>
-
             <div className="flex items-center gap-1.5">
               <FaFireFlameCurved />
               <span>{workout.caloriesBurned} kcal</span>
